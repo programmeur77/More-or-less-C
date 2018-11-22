@@ -1,0 +1,41 @@
+[33mcommit 11bb1ec3008ba46a3c1c0cae5126d9cb4bf07d68[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Benoît <benoit.puech@yahoo.fr>
+Date:   Thu Nov 22 21:42:36 2018 +0100
+
+    Updated choiceLevel function name + wrote checkRecord header
+
+[33mcommit f21cbfe8653e0b05a2499cdcb48c3b17e18f9954[m
+Author: Benoît <benoit.puech@yahoo.fr>
+Date:   Thu Nov 22 21:41:16 2018 +0100
+
+    updated the name of the choiceLevel fonction + implemented function to check new records
+
+[33mcommit 772e61d344277c90885fa8ceb846afef8d579a32[m
+Author: Benoît <benoit.puech@yahoo.fr>
+Date:   Thu Nov 22 18:16:16 2018 +0100
+
+    Function adding to save the best number of strokes
+
+[33mcommit a88153032958def276251a9ec8bafa1bb2bd34c0[m
+Author: Benoît <benoit.puech@yahoo.fr>
+Date:   Thu Nov 22 11:32:51 2018 +0100
+
+    contains functions for the game
+
+[33mcommit 125d53ee2d8fab65ec5e91908ce9c2d3c647b7b8[m[33m ([m[1;32mtest[m[33m, [m[1;32morigin[m[33m)[m
+Author: Benoît <benoit.puech@yahoo.fr>
+Date:   Thu Nov 22 11:31:10 2018 +0100
+
+    functions headers
+
+[33mcommit 9923c0a5be9f80c82b0b3df56adc3a36097f5ad8[m
+Author: Benoît <benoit.puech@yahoo.fr>
+Date:   Thu Nov 22 11:09:30 2018 +0100
+
+    main function which starts the game
+
+[33mcommit 6845abc198a4caf00149f50a18d0513ae29ef9d8[m
+Author: programmeur77 <33042825+programmeur77@users.noreply.github.com>
+Date:   Thu Nov 22 10:58:26 2018 +0100
+
+    Initial commit
