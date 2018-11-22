@@ -3,7 +3,7 @@
 #include <time.h>
 #include "functions.h"
 
-void choice()
+void choiceLevel()
 {
 	int level = 0, min = 0, max = 0;
 
@@ -71,7 +71,7 @@ void game(int mysteryNumber, int min, int max)
 			goon(pStartAgain);
 			if (startAgain == 1)
 			{
-				choice();
+				choiceLevel();
 			}
 		}
 		
@@ -90,17 +90,20 @@ void checkRecord(int strokes)
 
 	FILE *file = NULL;
 
-	file = fopen("record.rd", "w+");
+	file = fopen("record.rd", "r");
 
 	if(file != NULL)
 	{
-		fscanf(file, &record);
-		if(strokes > caractere)
-			printf("Vous n'avez pas battu votre précédent record de %d coups\n", caractere);
-		else
+		fscanf(file, "%i", &record);
+		if (strokes < record)
 		{
-			printf("Vous avez battu votre précédent record de %d coups, félicitations!\n", caractere);
+			printf("Felicitations! Vous venez de battre votre record\n");
+			record = strokes + 1;
+			printf("strokes vaut %d et record vaut %d\n", strokes, record);
+			saveRecord(record);
 		}
+		else
+			printf("Vous n'avez pas battu votre précédent record de %i coups\n", record);
 	}
 	else 
 		printf("Impossible d'ouvrir le fichier\n");
@@ -127,7 +130,7 @@ int goon(int *startAgain)
 			break;
 		default: 
 			printf("La valeur saisie est inconnue\n");
-			choice();
+			choiceLevel();
 			break;
 	}
 }
