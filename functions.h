@@ -12,7 +12,7 @@ int strokesCount(int *strokes);
 
 void checkRecord(int strokes);
 
-void saveRecord(int record);
+void saveRecord(int *record);
 
 int goon(int *startAgain);
 
