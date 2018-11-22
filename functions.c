@@ -10,10 +10,10 @@ void choiceLevel()
 	printf("Choisissez une niveau:\n\t1: Entre 0 et 100\n\t2: Entre 100 et 1000\n\t3: Entre 1000 et 10 000\n");
 	scanf("%d", &level);
 	
-	generateNumber(level, min, max);
+	generateNumber(level, min, max, level);
 }
 
-void generateNumber(int choice, int min, int max)
+void generateNumber(int choice, int min, int max,int level)
 {
 	int number = 0;
 
@@ -42,10 +42,10 @@ void generateNumber(int choice, int min, int max)
 
 	}
 
-	game(number, min, max);
+	game(number, min, max, level);
 }
 
-void game(int mysteryNumber, int min, int max)
+void game(int mysteryNumber, int min, int max, int level)
 {
     int enterNumber = 0, strokes = 0, startAgain = 1, *pStartAgain = &startAgain, *pStrokes = &strokes;
 
@@ -67,7 +67,7 @@ void game(int mysteryNumber, int min, int max)
 		else
 		{
 			printf("Bravo vous avez trouve le nombre mystere en %d coups!\n\n", strokes + 1);
-			checkRecord(strokes);
+			checkRecord(strokes, level);
 			goon(pStartAgain);
 			if (startAgain == 1)
 			{
@@ -84,47 +84,130 @@ int strokesCount(int *strokes)
 	return *strokes;
 }
 
-void checkRecord(int strokes)
+void checkRecord(int strokes, int level)
 {
+	FILE *file = NULL;
 	int record = 0;
 
-	FILE *file = NULL;
-
-	file = fopen("record.rd", "r");
-
-	if(file != NULL)
+	switch(level)
 	{
-		fscanf(file, "%i", &record);
-		if (strokes < record)
-		{
-			printf("Felicitations! Vous venez de battre votre record\n");
-			record = strokes + 1;
-			saveRecord(&record);
-		}
-		else
-			printf("Vous n'avez pas battu votre precedent record de %i coups\n", record);
-	}
-	else 
-		printf("Impossible d'ouvrir le fichier\n");
+		case 1:
+			file = fopen("record.rd", "r");
 
-	fclose(file);
+			if(file != NULL)
+			{
+				fscanf(file, "%i", &record);
+				if (strokes < record)
+				{
+					printf("Felicitations! Vous venez de battre votre record\n");
+					record = strokes + 1;
+					saveRecord(&record, level);
+				}
+				else
+					printf("Vous n'avez pas battu votre precedent record de %i coups\n", record);
+			}
+			else 
+				printf("Impossible d'ouvrir le fichier\n");
+
+			fclose(file);
+			break;
+
+			case 2:
+				file = fopen("recordlvl2.rd", "r");
+
+				if(file != NULL)
+				{
+					fscanf(file, "%i", &record);
+					if (strokes < record)
+					{
+						printf("Felicitations! Vous venez de battre votre record\n");
+						record = strokes + 1;
+						saveRecord(&record, level);
+					}
+					else
+						printf("Vous n'avez pas battu votre precedent record de %i coups\n", record);
+				}
+				else 
+					printf("Impossible d'ouvrir le fichier\n");
+
+				fclose(file);
+				break;
+
+			case 3:
+				file = fopen("recordlvl3.rd", "r");
+
+				if(file != NULL)
+				{
+					fscanf(file, "%i", &record, level);
+					if (strokes < record)
+					{
+						printf("Felicitations! Vous venez de battre votre record\n");
+						record = strokes + 1;
+						saveRecord(&record, level);
+					}
+					else
+						printf("Vous n'avez pas battu votre precedent record de %i coups\n", record);
+				}
+				else 
+					printf("Impossible d'ouvrir le fichier\n");
+				fclose(file);
+	}
 }
 
-void saveRecord(int *record)
+void saveRecord(int *record, int level)
 {
-	FILE *file = fopen("record.rd", "w");
-	
-	if(file != NULL)
-	{
-		fprintf(file, "%d" , *record);
-		printf("Le record a bien ete enregistre");
-	}
-	else
-	{
-		printf("Impossible de charger le fichier");
-	}
+	FILE *file = NULL;
 
-	fclose(file);
+	switch(level)
+	{
+		case 1:
+			file = fopen("record.rd", "w");
+	
+			if(file != NULL)
+			{
+				fprintf(file, "%d" , *record);
+				printf("Le record a bien ete enregistre\n\n");
+			}
+			else
+			{
+				printf("Impossible de charger le fichier");
+			}
+
+			fclose(file);
+			break;
+
+		case 2:
+			file = fopen("recordlvl2.rd", "w");
+	
+			if(file != NULL)
+			{
+				fprintf(file, "%d" , *record);
+				printf("Le record a bien ete enregistre\n\n");
+			}
+			else
+			{
+				printf("Impossible de charger le fichier");
+			}
+
+			fclose(file);
+			break;
+
+		case 3:
+			file = fopen("recordlvl3.rd", "w");
+	
+			if(file != NULL)
+			{
+				fprintf(file, "%d" , *record);
+				printf("Le record a bien ete enregistre\n\n");
+			}
+			else
+			{
+				printf("Impossible de charger le fichier");
+			}
+
+			fclose(file);
+			break;
+	}
 }
 
 int goon(int *startAgain)
