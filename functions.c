@@ -99,14 +99,30 @@ void checkRecord(int strokes)
 		{
 			printf("Felicitations! Vous venez de battre votre record\n");
 			record = strokes + 1;
-			printf("strokes vaut %d et record vaut %d\n", strokes, record);
-			saveRecord(record);
+			saveRecord(&record);
 		}
 		else
-			printf("Vous n'avez pas battu votre précédent record de %i coups\n", record);
+			printf("Vous n'avez pas battu votre precedent record de %i coups\n", record);
 	}
 	else 
 		printf("Impossible d'ouvrir le fichier\n");
+
+	fclose(file);
+}
+
+void saveRecord(int *record)
+{
+	FILE *file = fopen("record.rd", "w");
+	
+	if(file != NULL)
+	{
+		fprintf(file, "%d" , *record);
+		printf("Le record a bien ete enregistre");
+	}
+	else
+	{
+		printf("Impossible de charger le fichier");
+	}
 
 	fclose(file);
 }
