@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "functions.h"
 
@@ -66,6 +67,7 @@ void game(int mysteryNumber, int min, int max)
 		else
 		{
 			printf("Bravo vous avez trouve le nombre mystere en %d coups!\n\n", strokes + 1);
+			checkRecord(strokes);
 			goon(pStartAgain);
 			if (startAgain == 1)
 			{
@@ -80,6 +82,30 @@ int strokesCount(int *strokes)
 {
 	*strokes += 1;
 	return *strokes;
+}
+
+void checkRecord(int strokes)
+{
+	int record = 0;
+
+	FILE *file = NULL;
+
+	file = fopen("record.rd", "w+");
+
+	if(file != NULL)
+	{
+		fscanf(file, &record);
+		if(strokes > caractere)
+			printf("Vous n'avez pas battu votre précédent record de %d coups\n", caractere);
+		else
+		{
+			printf("Vous avez battu votre précédent record de %d coups, félicitations!\n", caractere);
+		}
+	}
+	else 
+		printf("Impossible d'ouvrir le fichier\n");
+
+	fclose(file);
 }
 
 int goon(int *startAgain)
